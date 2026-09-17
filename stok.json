@@ -1,1 +1,32 @@
-[]
+[
+  {
+    "id": 1,
+    "nama": "Saddle",
+    "stok": 25,
+    "harga": 25000
+  },
+  {
+    "id": 2,
+    "nama": "Paddle Anti-slip",
+    "stok": 24,
+    "harga": 35000
+  },
+  {
+    "id": 3,
+    "nama": "Grease Anti-garing",
+    "stok": 57,
+    "harga": 13000
+  },
+  {
+    "id": 5,
+    "nama": "Saddle Aero",
+    "stok": 32,
+    "harga": 80000
+  },
+  {
+    "id": 6,
+    "nama": "Grease NewGen",
+    "stok": 12,
+    "harga": 17000
+  }
+]

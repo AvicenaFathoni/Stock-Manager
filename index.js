@@ -13,7 +13,7 @@ class StokManager {
     }
 
     tambah(nama, stok, harga) {
-        const idBaru = this.daftarBarang.length + 1;
+        const idBaru = this.daftarBarang.length > 0 ? Math.max(...this.daftarBarang.map(b => b.id)) + 1 : 1;
         this.daftarBarang.push({ id: idBaru, nama, stok, harga });
     }
 
@@ -26,7 +26,7 @@ class StokManager {
         }
         this.daftarBarang.forEach(b => {
             let nilaiStok = b.stok * b.harga;
-            console.log(`ID: ${b.id} - ${b.nama} - Stok: ${b.stok} - Rp${b.harga} Nilai Stok: ${nilaiStok}`)
+            console.log(`ID: ${b.id} - ${b.nama} - Stok: ${b.stok} - Harga: Rp${b.harga} Nilai-Stok: ${nilaiStok}`)
         });
     }
 
