@@ -85,8 +85,8 @@ while (true) {
                 if (nama.trim() === "") {
                     throw new Error("ERROR: Nama barang tidak boleh kosong!");
                 }
-                if (isNaN(stok) || stok < 1) {
-                    throw new Error("ERROR: Stok harus diinput dan harus berupa angka juga tidak boleh kurang dari 1!");
+                if (isNaN(stok) || stok < 0) {
+                    throw new Error("ERROR: Stok harus diinput dan harus berupa angka juga tidak boleh minus!");
                 }
                 if (isNaN(harga) || harga < 1) {
                     throw new Error("ERROR: Harga harus diinput dan harus berupa angka juga tidak boleh kurang dari 1!");
