@@ -3,7 +3,8 @@ const fs = require("fs");
 
 let namaToko = "PedalWorks";
 let tanggalHariIni = new Date();
-console.log(`\n Selamat datang di ${namaToko}, tanggal hari ini:
+console.log("\nAvicena Fathoni Fawwaz XI-RPL 2 [06]");
+console.log(`Selamat datang di ${namaToko}, tanggal hari ini:
     ${tanggalHariIni}\n`);
 
 class StokManager {
@@ -17,8 +18,12 @@ class StokManager {
     }
 
     tampilkan() {
+        if(this.daftarBarang.length === 0) {
+            console.log(`\n[--=== BARANG BELUM ADA ===--]`);
+        }
+        if(this.daftarBarang.length > 0) {
         console.log(`\n[--=== Stok PedalWorks ===--]`);
-
+        }
         this.daftarBarang.forEach(b => {
             let nilaiStok = b.stok * b.harga;
             console.log(`ID: ${b.id} - ${b.nama} - Stok: ${b.stok} - Rp${b.harga} Nilai Stok: ${nilaiStok}`)
@@ -80,8 +85,8 @@ while (true) {
                 if (nama.trim() === "") {
                     throw new Error("ERROR: Nama barang tidak boleh kosong!");
                 }
-                if (isNaN(stok) || stok < 0) {
-                    throw new Error("ERROR: Stok harus diinput dan harus berupa angka juga tidak boleh minus!");
+                if (isNaN(stok) || stok < 1) {
+                    throw new Error("ERROR: Stok harus diinput dan harus berupa angka juga tidak boleh kurang dari 1!");
                 }
                 if (isNaN(harga) || harga < 1) {
                     throw new Error("ERROR: Harga harus diinput dan harus berupa angka juga tidak boleh kurang dari 1!");
@@ -105,11 +110,11 @@ while (true) {
             let jumlahMasuk = Number(readlineSync.question("Jumlah barang yang MASUK: "));
 
             try {
-                if (isNaN(idMasuk) || idMasuk <1) {
+                if (isNaN(idMasuk) || idMasuk < 1) {
                     throw new Error("ERROR: ID harus diinput dan harus berupa angka serta harus sesuai dengan barang yang ada!");
                 }
-                if (isNaN(jumlahMasuk) || jumlahMasuk <0) {
-                    throw new Error("ERROR: Jumlah barang masuk harus diinput dan harus berupa angka serta tidak boleh minus!");
+                if (isNaN(jumlahMasuk) || jumlahMasuk < 1) {
+                    throw new Error("ERROR: Jumlah barang masuk harus diinput dan harus berupa angka serta tidak boleh kurang dari 1!");
                 }
                 manager.barangMasuk(idMasuk, jumlahMasuk);
                 console.log("\nStok barang berhasil ditambahkan.");
@@ -122,18 +127,11 @@ while (true) {
         case "4":
             const idKeluar = Number(readlineSync.question("ID barang yang KELUAR: "));
             let jumlahKeluar = Number(readlineSync.question("Jumlah barang yang KELUAR: "));
-
             try {
-                if (isNaN(idKeluar) || idKeluar <1) {
-                    throw new Error("ERROR: ID harus diinput dan harus berupa angka serta harus sesuai dengan ID barang yang ada!");
+                if(isNaN(jumlahKeluar) || jumlahKeluar < 1) {
+                    throw new Error("ERROR: Jumlah barang keluar harus diinput dan harus berupa angka serta tidak boleh kurang dari 1!");
                 }
-                //Belum bisa menangani jumlah barang keluar melebihi stok yang ada.
-                if (isNaN(jumlahKeluar) || jumlahKeluar <0) {
-                    throw new Error("ERROR: Jumlah barang keluar harus diinput dan harus berupa angka serta tidak boleh minus!");
-                }
-                
                 manager.barangKeluar(idKeluar, jumlahKeluar);
-                console.log("\nStok barang berhasil dikurangi.");
                 manager.simpan();
             } catch (error) {
                 console.log(`\n${error.message}`);
@@ -144,8 +142,8 @@ while (true) {
             const idHapus = Number(readlineSync.question("ID barang yang ingin DIHAPUS: "));
 
             try {
-                if (isNaN(idHapus) || idHapus <1) {
-                    throw new Error("ERROR: ID harus diinput dan harus berupa angka serta tidak boleh lebih kecil dari 1!");
+                if (isNaN(idHapus) || idHapus < 1) {
+                    throw new Error("ERROR: ID harus diinput dan harus berupa angka serta tidak boleh kurang dari 1!");
                 }
                 manager.hapus(idHapus);
                 console.log("\nBarang berhasil dihapus.");
@@ -159,7 +157,7 @@ while (true) {
             const stokMenipis = manager.cekStokMenipis();
             console.log("\n[!] --=== STOK MENIPIS ===-- [!]");
             stokMenipis.forEach(b => {
-                console.log(`ID: ${b.id} - ${b.nama} - Stok: ${b.stok} - Rp${b.harga} Nilai Stok: ${nilaiStok}`)
+                console.log(`ID: ${b.id} - ${b.nama} - Stok: ${b.stok}`)
             });
             break;
 
